@@ -61,6 +61,9 @@ def update(request, id):
 
     return render(request, 'form.html', context)
 
+def delete(request, id):
+    pass
+
 
 
 def comment_create(request, article_id):

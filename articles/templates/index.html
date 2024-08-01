@@ -4,6 +4,7 @@
     {% for article in articles %}
         <p>{{article.title}}</p>
         <a href="{% url 'articles:detail' id=article.id %}">detail</a>
+        <a href="{% url 'articles:delete' id=article.id %}" class="btn btn-danger">Delete</a>
         <hr>
     {% endfor %}
 {% endblock %}
