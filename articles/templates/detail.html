@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>{{article.title}}</h1>
-    <p>{{article.content}}</p>
+    <form action="">
+        <h1>{{article.title}}</h1>
+        <p>{{article.content}}</p>
+        <a href="{% url 'articles:update' id=article.id %}">update</a>
+    </form>
 
     <hr>
     <form action="{% url 'articles:comment_create' article_id=article.id %}" method="POST">

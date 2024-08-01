@@ -31,7 +31,7 @@ def create(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save()
-            return redirect('articles:detail', id=article.id)
+            return redirect('articles:index')
     else:
         form = ArticleForm()
 
@@ -40,6 +40,28 @@ def create(request):
     }
     
     return render(request, 'form.html', context)
+
+def update(request, id):
+    article = Article.objects.get(id=id)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+
+        if form.is_valid():
+            form.save()
+            return redirect('articles:detail', id=article.id)
+    
+    else:
+        # article = Article.objects.get(id=id)
+
+        form = ArticleForm(instance=article)
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'form.html', context)
+
+
 
 def comment_create(request, article_id):
     if request.method == 'POST':
@@ -66,4 +88,4 @@ def comment_delete(request, article_id, id):
         comment = Comment.objects.get(id=id)
         comment.delete()
     
-    return redirect('articles:detail', id=article_id)    
+    return redirect('articles:detail', id=article_id)   
