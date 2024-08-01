@@ -62,8 +62,11 @@ def update(request, id):
     return render(request, 'form.html', context)
 
 def delete(request, id):
-    pass
+    if request.method == 'GET':
+        article = Article.objects.get(id=id)
+        article.delete()
 
+    return redirect('articles:index')
 
 
 def comment_create(request, article_id):
