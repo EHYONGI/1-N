@@ -7,4 +7,4 @@ class Article(models.Model):
 
 class Comment(models.Model):
     content = models.TextField()
-    article = models.ForeignKey(Article, on_delete=models.CASCADE) # 부모가 지워지면 자식 요소도 지워주세요 
+    article = models.ForeignKey(Article, on_delete=models.CASCADE) # 부모가 지워지면 자식 요소도 지워주세요
